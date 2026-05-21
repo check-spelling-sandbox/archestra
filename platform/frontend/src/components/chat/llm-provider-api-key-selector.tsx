@@ -92,7 +92,7 @@ export function LlmProviderApiKeySelector({
     setOpen(newOpen);
     onOpenChange?.(newOpen);
   };
-  // Track which provider we last auto-selected for to prevent infinite loops.
+  // Track which provider we last auto-selected to prevent infinite loops.
   // Using the provider value (not a boolean) so we can re-run auto-select when
   // the provider genuinely changes (e.g., user picks a model from a different provider)
   // without looping when our own mutations cause provider changes.
@@ -154,7 +154,7 @@ export function LlmProviderApiKeySelector({
   // Uses provider-based tracking instead of a boolean flag to allow re-selection when the
   // provider genuinely changes (e.g., user picks a model from a different provider) while
   // preventing infinite loops from our own mutations causing provider changes.
-  // biome-ignore lint/correctness/useExhaustiveDependencies: adding updateConversationMutation as a dependency would cause a infinite loop
+  // biome-ignore lint/correctness/useExhaustiveDependencies: adding updateConversationMutation as a dependency would cause an infinite loop
   useEffect(() => {
     // Skip if loading or no keys available
     if (isLoading || availableKeys.length === 0) return;

@@ -498,7 +498,7 @@ const agentRoutes: FastifyPluginAsyncZod = async (fastify) => {
       };
       const agent = await AgentModel.create(createData, user.id);
       // We need to re-init metrics with the new label keys in case label keys changed.
-      // Otherwise the newly added labels will not make it to metrics. The labels with new keys, that is.
+      // Otherwise, the newly added labels will not make it to metrics. The labels with new keys, that is.
       await initializeObservabilityMetrics();
 
       return reply.send(agent);
@@ -923,7 +923,7 @@ const agentRoutes: FastifyPluginAsyncZod = async (fastify) => {
 
       // A model and its API key are a pair: persist both or neither. Validate
       // the merged result, but only when this update touches either field — an
-      // unrelated edit must not be blocked by a pre-existing half pair.
+      // unrelated edit must not be blocked by a preexisting half pair.
       if (body.modelId !== undefined || body.llmApiKeyId !== undefined) {
         const mergedModelId =
           body.modelId !== undefined ? body.modelId : existingAgent.modelId;

@@ -607,7 +607,7 @@ test.describe("Identity Provider Team Sync E2E", () => {
     try {
       // STEP 5: Verify user was automatically added to the team
       // Re-authenticate the admin page before polling. In CI, the SSO flow can
-      // invalidate or age out the pre-existing admin session used for cleanup
+      // invalidate or age out the preexisting admin session used for cleanup
       // and verification.
       await ensureAdminAuthenticated(page);
       const teamId = await getTeamIdByNameViaApi(page, teamName);
@@ -825,18 +825,18 @@ test.describe("Identity Provider Role Mapping E2E", () => {
     await fillOidcProviderForm(page, providerName);
 
     // STEP 3: Configure Role Mapping with TWO rules
-    // The first rule will NOT match (looks for a non-existent group)
+    // The first rule will NOT match (looks for a nonexistent group)
     // The second rule WILL match (looks for archestra-admins group)
     await openIdentityProviderDialogSection(page, "role-mapping");
 
     const addRuleButton = page.getByTestId(E2eTestId.IdpRoleMappingAddRule);
     await expect(addRuleButton).toBeVisible();
 
-    // Add FIRST rule - will NOT match (non-existent group -> editor role)
+    // Add FIRST rule - will NOT match (nonexistent group -> editor role)
     await addRuleButton.click();
     await getRoleMappingRuleRow(page, 0)
       .getByTestId(E2eTestId.IdpRoleMappingRuleTemplate)
-      .fill('{{#includes groups "non-existent-group"}}true{{/includes}}');
+      .fill('{{#includes groups "nonexistent-group"}}true{{/includes}}');
     await getRoleMappingRuleRow(page, 0)
       .getByTestId(E2eTestId.IdpRoleMappingRuleRole)
       .click();

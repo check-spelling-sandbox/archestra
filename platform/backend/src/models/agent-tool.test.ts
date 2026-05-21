@@ -31,7 +31,7 @@ describe("AgentToolModel.findById", () => {
     expect(result?.tool.name).toBe("test-tool");
   });
 
-  test("returns undefined for non-existent ID", async () => {
+  test("returns undefined for nonexistent ID", async () => {
     const result = await AgentToolModel.findById(
       "00000000-0000-0000-0000-000000000000",
     );
@@ -1045,7 +1045,7 @@ describe("AgentToolModel.findAll", () => {
         [tool1.id, tool2.id, tool3.id],
       );
 
-      // Verify all relationships exist (including the pre-existing one)
+      // Verify all relationships exist (including the preexisting one)
       const agent1Tools = await AgentToolModel.findToolIdsByAgent(agent1.id);
       const agent2Tools = await AgentToolModel.findToolIdsByAgent(agent2.id);
 
