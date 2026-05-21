@@ -13,7 +13,7 @@ concurrency:
 jobs:
   bounty-assignment:
     name: Assign Bounty
-    runs-on: blacksmith-2vcpu-ubuntu-2404
+    runs-on: ubuntu-latest
     # Only run on issue comments, not PR comments
     if: ${{ !github.event.issue.pull_request }}
     permissions:

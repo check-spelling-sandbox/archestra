@@ -44,14 +44,14 @@ jobs:
       matrix:
         include:
           - name: Platform
-            runner: blacksmith-16vcpu-ubuntu-2404
+            runner: ubuntu-latest
             context: ./platform
             dockerfile: ./platform/Dockerfile
             local-tag-prefix: archestra-platform
             use-build-action: true
             scan-exit-code: "true"
           - name: MCP Server Base
-            runner: blacksmith-4vcpu-ubuntu-2404
+            runner: ubuntu-latest
             context: ./platform/mcp_server_docker_image
             dockerfile: ./platform/mcp_server_docker_image/Dockerfile
             local-tag-prefix: mcp-server-base

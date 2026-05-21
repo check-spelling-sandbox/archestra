@@ -22,7 +22,7 @@ jobs:
     name: Release Freeze Check
     # Always run so it can be a required status check - passes immediately for
     # non-release-please PRs and merge queue runs.
-    runs-on: blacksmith-2vcpu-ubuntu-2404
+    runs-on: ubuntu-latest
     permissions:
       contents: read # Required to inspect the repository context for release-please PRs.
       pull-requests: write # Required to request changes on frozen release PRs.
@@ -85,7 +85,7 @@ jobs:
 
   license-compliance-check:
     name: License Compliance Check
-    runs-on: blacksmith-2vcpu-ubuntu-2404
+    runs-on: ubuntu-latest
     permissions:
       contents: read
     defaults:
@@ -126,7 +126,7 @@ jobs:
 
   supply-chain-policy:
     name: Supply Chain Policy
-    runs-on: blacksmith-2vcpu-ubuntu-2404
+    runs-on: ubuntu-latest
     permissions:
       contents: read
     steps:
@@ -141,7 +141,7 @@ jobs:
 
   docs-image-policy:
     name: Docs Image Policy
-    runs-on: blacksmith-2vcpu-ubuntu-2404
+    runs-on: ubuntu-latest
     permissions:
       contents: read
     steps:
@@ -157,7 +157,7 @@ jobs:
   dependency-review:
     name: Dependency Review
     if: ${{ github.event_name == 'pull_request' }}
-    runs-on: blacksmith-2vcpu-ubuntu-2404
+    runs-on: ubuntu-latest
     permissions:
       contents: read # Required to checkout the repository and diff dependency manifests.
       pull-requests: write # Required for dependency-review-action PR comments.
@@ -180,7 +180,7 @@ jobs:
   dependency-review-merge-group:
     name: Dependency Review
     if: ${{ github.event_name == 'merge_group' }}
-    runs-on: blacksmith-2vcpu-ubuntu-2404
+    runs-on: ubuntu-latest
     permissions: {}
     steps:
       - name: Skip dependency review for merge queue
@@ -191,7 +191,7 @@ jobs:
   # or on-demand via the "run-e2e" PR label.
   platform-lint-and-unit-tests:
     name: Platform Lint and Unit Tests
-    runs-on: blacksmith-16vcpu-ubuntu-2404
+    runs-on: ubuntu-latest
     permissions:
       contents: write # Required to push generated code updates back to release-please PRs.
     defaults:
@@ -334,7 +334,7 @@ jobs:
 
   frontend-integration-tests:
     name: Frontend Integration Tests (MSW)
-    runs-on: blacksmith-4vcpu-ubuntu-2404
+    runs-on: ubuntu-latest
     permissions:
       contents: read
     defaults:
@@ -408,13 +408,13 @@ jobs:
       matrix:
         include:
           - name: Platform
-            runner: blacksmith-16vcpu-ubuntu-2404
+            runner: ubuntu-latest
             context: ./platform
             dockerfile: ./platform/Dockerfile
             local-tag-prefix: archestra-platform
             use-build-action: true
           - name: MCP Server Base
-            runner: blacksmith-4vcpu-ubuntu-2404
+            runner: ubuntu-latest
             context: ./platform/mcp_server_docker_image
             dockerfile: ./platform/mcp_server_docker_image/Dockerfile
             local-tag-prefix: mcp-server-base
@@ -460,7 +460,7 @@ jobs:
 
   helm-chart-linting-and-tests:
     name: Helm Chart Linting and Tests
-    runs-on: blacksmith-2vcpu-ubuntu-2404
+    runs-on: ubuntu-latest
     permissions:
       contents: read # Required to checkout the repository and lint/package the Helm chart.
     defaults:

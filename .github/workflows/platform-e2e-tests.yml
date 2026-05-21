@@ -57,7 +57,7 @@ jobs:
       matrix:
         include:
           - name: Platform
-            runner: blacksmith-16vcpu-ubuntu-2404
+            runner: ubuntu-latest
             context: ./platform
             dockerfile: ""
             artifact-name: platform-docker-image
@@ -65,7 +65,7 @@ jobs:
             local-tag-prefix: archestra-platform
             use-build-action: true
           - name: MCP Server Base
-            runner: blacksmith-4vcpu-ubuntu-2404
+            runner: ubuntu-latest
             context: ./platform/mcp_server_docker_image
             dockerfile: ./platform/mcp_server_docker_image/Dockerfile
             artifact-name: mcp-server-base-docker-image
@@ -169,7 +169,7 @@ jobs:
     name: Platform E2E Tests
     needs: [platform-e2e-build]
     if: ${{ github.event_name == 'workflow_dispatch' || github.event_name == 'merge_group' || github.event.label.name == 'run-e2e' }}
-    runs-on: blacksmith-16vcpu-ubuntu-2404
+    runs-on: ubuntu-latest
     timeout-minutes: 180
     permissions:
       contents: read # Required to checkout the repository and read test assets.
@@ -310,7 +310,7 @@ jobs:
     name: Platform E2E Tests (Readonly Vault)
     needs: [platform-e2e-build]
     if: ${{ github.event_name == 'workflow_dispatch' || github.event_name == 'merge_group' || github.event.label.name == 'run-e2e' }}
-    runs-on: blacksmith-8vcpu-ubuntu-2404
+    runs-on: ubuntu-latest
     timeout-minutes: 120
     permissions:
       contents: read # Required to checkout the repository and read test assets.
@@ -446,7 +446,7 @@ jobs:
     name: Platform E2E Tests (Quickstart)
     needs: [platform-e2e-build]
     if: ${{ github.event_name == 'workflow_dispatch' || github.event_name == 'merge_group' || github.event.label.name == 'run-e2e' }}
-    runs-on: blacksmith-8vcpu-ubuntu-2404
+    runs-on: ubuntu-latest
     permissions:
       contents: read # Required to checkout the repository and read test assets.
       id-token: write # Required for Workload Identity Federation in setup actions.
@@ -642,7 +642,7 @@ jobs:
     name: Merge E2E Test Reports
     needs: [platform-e2e-tests, platform-readonly-vault-e2e-tests, platform-quickstart-e2e-tests]
     if: ${{ !cancelled() && (github.event_name == 'workflow_dispatch' || github.event_name == 'merge_group' || github.event.label.name == 'run-e2e') }}
-    runs-on: blacksmith-2vcpu-ubuntu-2404
+    runs-on: ubuntu-latest
     permissions:
       contents: read # Required to checkout the repository and merge Playwright reports.
       pull-requests: write # Required for playwright-report-summary to comment on PRs.
